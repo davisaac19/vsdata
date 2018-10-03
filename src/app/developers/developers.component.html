@@ -6,80 +6,71 @@
               <div class="card-header card-header-danger">
                   <h4 class="card-title">Editar Perfil</h4>
                   <p class="card-category">Crea tu perfil</p>
+                  <p>Mi formulario está completo? {{userForm.valid}}</p>
               </div>
               <div class="card-body">
                   <form #userForm="ngForm" (ngSubmit)="onSave(userForm.value)" novalidate>
-                      <p>Is "myForm" valid? {{userForm.valid}}</p>
-                      <table border='1'>
-                        <tr>
-                          <td>name</td>
-                          <td>
-                            <input name="id" type="hidden" [(ngModel)]="id" />
-                            <input matInput placeholder="Nombre" name="name" type="text" required [(ngModel)]="name" />
-                    
-                          </td>
-                        </tr>
-                    
-                        <tr>
-                            <td>apellido</td>
-                            <td>
-                              <input matInput placeholder="Apellido" name="apellido" type="text" required [(ngModel)]="apellido" />
-                            </td>
-                          </tr>
-                    
-                        <tr>
-                          <td>address</td>
-                          <td>
-                            <input matInput placeholder="Dirección" name="address" required type="text" [(ngModel)]="address" />
-                          </td>
-                        </tr>
-                        <tr>
-                            <td>acerca de mi</td>
-                            <td>
-                              <input matInput placeholder="Acerca de mi" name="aboutme" required type="text" [(ngModel)]="aboutme" />
-                            </td>
-                          </tr>
-                        <tr>
-                          <td colspan="2">
-                            <input type="submit" value="{{valbutton}}" class="btn btn-danger" />
-                          </td>
-                        </tr>
-                      </table>
+                    <div class="row">
+                        <input name="id" type="hidden" [(ngModel)]="id" />
+                      <div class="col-md-6">
+                          <input matInput placeholder="Nombre" name="name" type="text" required [(ngModel)]="name" />
+                      </div>
+                      <div class="col-md-6">
+                          <input matInput placeholder="Apellido" name="apellido" type="text" required [(ngModel)]="apellido" />
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                          <input matInput placeholder="Dirección" name="address" required type="text" [(ngModel)]="address" />
+                      </div>
+                      <div class="col-md-6">
+                          <input matInput placeholder="Acerca de mi" name="aboutme" required type="text" [(ngModel)]="aboutme" />
+                      </div>
+                    </div>
+                    <br>
+                    <input type="submit" value="{{valbutton}}" class="btn btn-danger pull-right" />
                     </form>
               </div>
           </div>
         </div>
         <div class="col-md-4">
-          
+          <!-- aquí va ir información adicional (pendiente) -->
         </div>
       </div>
         
     </div>
-  </div>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+            <table border='1'>
 
-<table border='1'>
+                <tr>
+                  <td>Id</td>
+                  <td>Nombre</td>
+                  <td>Apellido</td>
+                  <td>Address</td>
+                  <td>Acera de mi</td>
+                  <td>Editar</td>
+                  <td>Eliminar</td>
+                </tr>
+                <tr *ngFor="let kk of Repdata;let ind = index">
+              
+                  <td>{{ind + 1}}</td>
+                  <td>{{kk.name}}</td>
+                  <td>{{kk.apellido}}</td>
+                  <td>{{kk.address}}</td>
+                  <td>{{kk.aboutme}}</td>
+                  <td>
+                    <a (click)="edit(kk)" style="color:blueviolet">Edit</a>
+                  </td>
+                  <td>
+                    <a (click)="delete(kk._id)" style="color:blueviolet">Delete</a>
+                  </td>
+                </tr>
+              </table>
+        </div>
+      </div>
+    </div>
+    
+</div>
 
-  <tr>
-    <td>Id</td>
-    <td>Name</td>
-    <td>Apellido</td>
-    <td>Address</td>
-    <td>Acera de mi</td>
-    <td>Edit</td>
-    <td>Delete</td>
-  </tr>
-  <tr *ngFor="let kk of Repdata;let ind = index">
-
-    <td>{{ind + 1}}</td>
-    <td>{{kk.name}}</td>
-    <td>{{kk.apellido}}</td>
-    <td>{{kk.address}}</td>
-    <td>{{kk.aboutme}}</td>
-    <td>
-      <a (click)="edit(kk)" style="color:blueviolet">Edit</a>
-    </td>
-    <td>
-      <a (click)="delete(kk._id)" style="color:blueviolet">Delete</a>
-    </td>
-  </tr>
-</table>
