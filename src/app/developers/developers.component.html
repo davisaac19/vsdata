@@ -11,20 +11,28 @@
               <div class="card-body">
                   <form #userForm="ngForm" (ngSubmit)="onSave(userForm.value)" novalidate>
                     <div class="row">
-                        <input name="id" type="hidden" [(ngModel)]="id" />
+                      <input name="id" type="hidden" [(ngModel)]="id" />
                       <div class="col-md-6">
-                          <input matInput placeholder="Nombre" name="name" type="text" required [(ngModel)]="name" />
+                          <mat-form-field class="example-full-width">
+                              <input matInput placeholder="Nombre" name="name" type="text" required [(ngModel)]="name" />    
+                          </mat-form-field>
                       </div>
                       <div class="col-md-6">
+                        <mat-form-field class="example-full-width">
                           <input matInput placeholder="Apellido" name="apellido" type="text" required [(ngModel)]="apellido" />
+                        </mat-form-field>
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-md-6">
+                        <mat-form-field class="example-full-width">
                           <input matInput placeholder="Dirección" name="address" required type="text" [(ngModel)]="address" />
+                        </mat-form-field>
                       </div>
                       <div class="col-md-6">
-                          <input matInput placeholder="Acerca de mi" name="aboutme" required type="text" [(ngModel)]="aboutme" />
+                        <mat-form-field class="example-full-width">
+                          <textarea matInput placeholder="Acerca de mi" name="aboutme" required type="text" [(ngModel)]="aboutme"></textarea>
+                        </mat-form-field>
                       </div>
                     </div>
                     <br>
@@ -34,7 +42,21 @@
           </div>
         </div>
         <div class="col-md-4">
-          <!-- aquí va ir información adicional (pendiente) -->
+            <div class="card card-profile">
+                <div class="card-avatar">
+                    <a href="https://www.youtube.com/watch?v=B4LvDiIi128">
+                        <img class="img" src="../assets/img/faces/avatar.png" />
+                    </a>
+                </div>
+                <div class="card-body">
+                    <h6 class="card-category text-gray">Tu perfil</h6>
+                    <h4 class="card-title">Tu nombre</h4>
+                    <p class="card-description">
+                        Aquí aparecerá la pequeña o gran descripción que escribas sobre ti, esperemos que sea breve y concisa.
+                    </p>
+                    <a href="#pablo" class="btn btn-danger btn-round">Seguir</a>
+                </div>
+            </div>
         </div>
       </div>
         

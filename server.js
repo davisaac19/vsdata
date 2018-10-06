@@ -5,7 +5,7 @@ var mongo = require("mongoose");
   
 var db = mongo.connect("mongodb://admin:ohUky6f2v6wjAktv@SG-AngularCRUD-15622.servers.mongodirector.com:46586,SG-AngularCRUD-15623.servers.mongodirector.com:46586,SG-AngularCRUD-15624.servers.mongodirector.com:46586/admin?replicaSet=RS-AngularCRUD-0&ssl=true", function(err, response){  
    if(err){ console.log( err); }  
-   else{ console.log('Connected to ' + db, ' + ', response); }  
+   else{ console.log('Connected to ' + db); }  
 });  
   
    
@@ -13,7 +13,7 @@ var app = express()
 app.use(bodyParser());  
 app.use(bodyParser.json({limit:'5mb'}));   
 app.use(bodyParser.urlencoded({extended:true}));  
-   
+
   
 app.use(function (req, res, next) {        
      res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');    
@@ -37,7 +37,7 @@ var model = mongo.model('users', UsersSchema, 'users');
   
 app.post("/api/SaveUser",function(req,res){   
  var mod = new model(req.body);  
- if(req.body.mode =="Save")  
+ if(req.body.mode =="Guardar")  
  {  
     mod.save(function(err,data){  
       if(err){  
@@ -50,7 +50,7 @@ app.post("/api/SaveUser",function(req,res){
 }  
 else   
 {  
- model.findByIdAndUpdate(req.body.id, { name: req.body.name, address: req.body.address},  
+ model.findByIdAndUpdate(req.body.id, { name: req.body.name, apellido: req.body.apellido, address: req.body.address, aboutme: req.body.aboutme},  
    function(err,data) {  
    if (err) {  
    res.send(err);         

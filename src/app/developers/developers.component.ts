@@ -14,7 +14,7 @@ export class DevelopersComponent {
      
   constructor(private newService :CommonService,) {   }  
    Repdata;  
-   valbutton ="Save";  
+   valbutton ="Guardar";  
    
    
 ngOnInit() {    
@@ -37,7 +37,7 @@ this.name= kk.name;
 this.apellido= kk.apellido;  
 this.address= kk.address;
 this.aboutme= kk.aboutme;  
-this.valbutton ="Update";  
+this.valbutton ="Actualizar";  
 }  
   
 delete = function(id) {  
