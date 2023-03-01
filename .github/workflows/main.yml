@@ -13,15 +13,10 @@ jobs:
       - name: Checkout del repositorio
         uses: actions/checkout@v3
         
-      - name: 📂 Sync files
-        uses: SamKirkland/FTP-Deploy-Action@4.0.0
+      - name: Upload ftp
+        uses: sebastianpopp/ftp-action@releases/v2
         with:
-          server: https://waws-prod-bn1-183.ftp.azurewebsites.windows.net/site/wwwroot
-          server-dir: /site/wwwroot/fromgithub/
-          username: alertsapidev
-          password: stpH09Hstq0g8RvtXft9HKltFMyGBgJku6lck3jTFpgXGeJQDXvTyywlzYaX
-          exclude: |
-            **/.git*
-            **/.git*/**
-            **/node_modules/**
-            fileToExclude.txt
+          host: ${{ secrets.FTP_SERVER }}
+          user: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          
