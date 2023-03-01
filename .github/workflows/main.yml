@@ -13,8 +13,8 @@ jobs:
       - name: Instalar lftp
         run: sudo apt-get install lftp -y
 
-      - name: Conexión a FTP
+      - name: Cargar archivos a FTP
         run: |
           lftp -c "open -u ${{ secrets.FTP_USERNAME }},${{ secrets.FTP_PASSWORD }} ${{ secrets.FTP_HOST }}"
-          lftp -e "ls; exit"
+          lftp -e "mirror -R ${{ github.workspace }}/ /fromgithub/; exit"
           
