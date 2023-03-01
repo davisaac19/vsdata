@@ -10,13 +10,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout del repositorio
-        uses: actions/checkout@v3
-        
-      - name: Upload ftp
-        uses: sebastianpopp/ftp-action@releases/v2
-        with:
-          host: ${{ secrets.FTP_SERVER }}
-          user: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
+      - name: Instalar lftp
+        run: sudo apt-get install lftp -y
+
+      - name: Conexión a FTP
+        run: |
+          lftp -c "open -u ${{ secrets.FTP_USERNAME }},${{ secrets.FTP_PASSWORD }} ${{ secrets.FTP_HOST }}"
+          lftp -e "ls; exit"
           
