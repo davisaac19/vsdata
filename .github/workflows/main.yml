@@ -1,0 +1,23 @@
+name: Desplegar a FTP
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout del repositorio
+        uses: actions/checkout@v2
+
+      - name: Configuración del entorno
+        run: |
+          sudo apt-get install lftp -y
+          echo "set ftp:ssl-allow no" >> ~/.lftprc
+          echo "open ${{ secrets.FTP_HOST }}" >> ~/.lftprc
+          echo "user ${{ secrets.FTP_USERNAME }} ${{ secrets.FTP_PASSWORD }}" >> ~/.lftprc
+          echo "set ftp:passive-mode true" >> ~/.lftprc
+          echo "set ftp:use-mdtm no" >> ~/.lftprc
