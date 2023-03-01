@@ -16,9 +16,9 @@ jobs:
       - name: 📂 Sync files
         uses: SamKirkland/FTP-Deploy-Action@4.0.0
         with:
-          server: ftp://waws-prod-bn1-183.ftp.azurewebsites.windows.net/site/wwwroot
+          server: https://waws-prod-bn1-183.ftp.azurewebsites.windows.net/site/wwwroot
           server-dir: /site/wwwroot/fromgithub/
-          username: alertsapidev\$alertsapidev
+          username: alertsapidev
           password: stpH09Hstq0g8RvtXft9HKltFMyGBgJku6lck3jTFpgXGeJQDXvTyywlzYaX
           exclude: |
             **/.git*
