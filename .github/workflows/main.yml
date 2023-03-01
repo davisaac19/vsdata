@@ -21,3 +21,7 @@ jobs:
           echo "user ${{ secrets.FTP_USERNAME }} ${{ secrets.FTP_PASSWORD }}" >> ~/.lftprc
           echo "set ftp:passive-mode true" >> ~/.lftprc
           echo "set ftp:use-mdtm no" >> ~/.lftprc
+          
+      - name: Desplegar archivos a FTP
+        run: |
+          lftp -c "mirror -R --exclude-glob .git* --exclude .github --exclude README.md --exclude *.yml --exclude *.yaml --exclude .gitignore . /fromgithub/"
