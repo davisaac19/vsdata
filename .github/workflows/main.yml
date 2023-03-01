@@ -16,7 +16,7 @@ jobs:
       - name: 📂 Sync files
         uses: SamKirkland/FTP-Deploy-Action@4.3.3
         with:
-          server: ftp://waws-prod-bn1-183.ftp.azurewebsites.windows.net/site/wwwroot
+          server: waws-prod-bn1-183.ftp.azurewebsites.windows.net/site/wwwroot
           username: alertsapidev\$alertsapidev
           password: ${{ secrets.FTP_PASSWORD }}
           exclude: |
