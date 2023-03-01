@@ -17,8 +17,8 @@ jobs:
         run: |
           sudo apt-get install lftp -y
           echo "set ftp:ssl-allow no" >> ~/.lftprc
-          echo "open ${{ secrets.FTP_HOST }}" >> ~/.lftprc
-          echo "user ${{ secrets.FTP_USERNAME }} ${{ secrets.FTP_PASSWORD }}" >> ~/.lftprc
+          echo "open waws-prod-bn1-183.ftp.azurewebsites.windows.net/site/wwwroot" >> ~/.lftprc
+          echo "user alertsapidev\$alertsapidev stpH09Hstq0g8RvtXft9HKltFMyGBgJku6lck3jTFpgXGeJQDXvTyywlzYaX" >> ~/.lftprc
           echo "set ftp:passive-mode true" >> ~/.lftprc
           echo "set ftp:use-mdtm no" >> ~/.lftprc
           
@@ -29,7 +29,7 @@ jobs:
       - name: 📂 Sync files
         uses: SamKirkland/FTP-Deploy-Action@4.3.3
         with:
-          server: 20.119.136.7/site/wwwroot
+          server: waws-prod-bn1-183.ftp.azurewebsites.windows.net/site/wwwroot
           username: alertsapidev\$alertsapidev
           password: stpH09Hstq0g8RvtXft9HKltFMyGBgJku6lck3jTFpgXGeJQDXvTyywlzYaX
           exclude: |
