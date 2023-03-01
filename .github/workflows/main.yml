@@ -13,15 +13,9 @@ jobs:
       - name: Checkout del repositorio
         uses: actions/checkout@v2
 
-      - name: Configuración del entorno
-        run: |
-          sudo apt-get install lftp -y
-          echo "set ftp:ssl-allow no" >> ~/.lftprc
-          echo "open ${{ secrets.FTP_HOST }}" >> ~/.lftprc
-          echo "user ${{ secrets.FTP_USERNAME }} ${{ secrets.FTP_PASSWORD }}" >> ~/.lftprc
-          echo "set ftp:passive-mode true" >> ~/.lftprc
-          echo "set ftp:use-mdtm no" >> ~/.lftprc
-          
-      - name: Desplegar archivos a FTP
-        run: |
-          lftp -c "mirror -R --exclude-glob .git* --exclude .github --exclude README.md --exclude *.yml --exclude *.yaml --exclude .gitignore . /fromgithub/"
+      - name: 📂 Sync folders and files to the server
+        uses: SamKirkland/FTP-Deploy-Action@4.3.3
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
