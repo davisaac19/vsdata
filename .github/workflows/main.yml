@@ -12,11 +12,24 @@ jobs:
     steps:
       - name: Checkout del repositorio
         uses: actions/checkout@v3
+        
+      - name: Configuración del entorno
+        run: |
+          sudo apt-get install lftp -y
+          echo "set ftp:ssl-allow no" >> ~/.lftprc
+          echo "open ${{ secrets.FTP_HOST }}" >> ~/.lftprc
+          echo "user ${{ secrets.FTP_USERNAME }} ${{ secrets.FTP_PASSWORD }}" >> ~/.lftprc
+          echo "set ftp:passive-mode true" >> ~/.lftprc
+          echo "set ftp:use-mdtm no" >> ~/.lftprc
+          
+      - name: Desplegar archivos a FTP
+        run: |
+          lftp -c "mirror -R . /fromgithub/"
 
       - name: 📂 Sync files
         uses: SamKirkland/FTP-Deploy-Action@4.3.3
         with:
-          server: waws-prod-bn1-183.ftp.azurewebsites.windows.net/site/wwwroot
+          server: 20.119.136.7/site/wwwroot
           username: alertsapidev\$alertsapidev
           password: stpH09Hstq0g8RvtXft9HKltFMyGBgJku6lck3jTFpgXGeJQDXvTyywlzYaX
           exclude: |
